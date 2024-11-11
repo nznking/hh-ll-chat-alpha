@@ -13,5 +13,24 @@ services:
       - "3000:8080"
     volumes:
       - open-webui:/app/backend/data
+    environment:
+      - OLLAMA_API_BASE_URL=http://ollama:11434/api
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
 volumes:
   open-webui:
+  ollama:
