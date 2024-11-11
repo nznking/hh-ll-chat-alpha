@@ -3,12 +3,12 @@ services:
   openwebui:
     image: ghcr.io/open-webui/open-webui:main
     deploy:
-    resources:
-      reservations:
-        devices:
-          - driver: nvidia
-            count: all
-            capabilities: [gpu]
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     ports:
       - "3000:8080"
     volumes:
